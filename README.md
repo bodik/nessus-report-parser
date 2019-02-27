@@ -12,6 +12,6 @@ Usage
 
 ::
 
-    from nessus_parser import parse_nessus_file, parse_nessus_xml
+    from nessus_report_parser import parse_nessus_file, parse_nessus_xml
     parse_nessus_file('path/to/nessus/file.nessus')
 

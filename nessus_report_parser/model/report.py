@@ -17,7 +17,7 @@ class Report(UserDict):
 
         properties = {
             'name': elem.attrib.get('name'),
-            'host': ReportHost.from_etree(elem.find('ReportHost'))
+            'hosts': [ReportHost.from_etree(el) for el in elem.findall('ReportHost')]
         }
 
         return Report(properties)

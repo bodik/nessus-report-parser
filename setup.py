@@ -17,7 +17,7 @@ setup(
     author="Flávio Cardoso Ferreira Pontes",
     author_email="flavio.pontes@siteblindado.com.br",
     url='https://github.com/siteblindado/nessus_report_parser-report-nessus_report_parser',
-    packages=find_packages(exclude='tests'),
+    packages=find_packages(exclude=['tests']),
     package_dir={'nessus_report_parser': 'nessus_report_parser'},
     package_data={
         '': ['LICENSE.txt', 'README.md']

@@ -9,6 +9,7 @@ from nessus_report_parser import ReportItem
 class TestReportItem(unittest.TestCase):
     def test_well_formed_node(self):
         node = '<ReportItem port="0" svc_name="general" protocol="tcp" severity="0" pluginID="19506" pluginName="Nessus Scan Information" pluginFamily="Settings"><agent>all</agent>' \
+               '<cve>CVE-1900-0000</cve><cve>CVE-1900-0001</cve>' \
                '<description>This plugin displays, for each tested host,\n' \
                'information about the scan itself :\n\n- The version of the' \
                ' plugin set.\n- The type of scanner (Nessus or Nessus Home).\n' \
@@ -41,9 +42,9 @@ class TestReportItem(unittest.TestCase):
 
         expected_dict = {
             'agent': 'all',
-            'bid': None,
+            'bid': [],
             'canvas_package': None,
-            'cve': None,
+            'cve': ['CVE-1900-0000', 'CVE-1900-0001'],
             'cvss_base_score': None,
             'cvss_temporal_score': None,
             'cvss_vector': None,
@@ -74,7 +75,7 @@ class TestReportItem(unittest.TestCase):
             'synopsis': 'This plugin displays information about the Nessus scan.',
             'plugin_output': 'Information about this scan :\n\nNessus version : 7.0.3\nPlugin feed version : 201804120615\nScanner edition used : Nessus\nScan type : Normal\nScan policy used : Basic Network Scan\nScanner IP : 10.168.69.130\nPort scanner(s) : nessus_syn_scanner\nPort range : default\nThorough tests : no\nExperimental tests : no\nParanoia level : 1\nReport verbosity : 1\nSafe checks : yes\nOptimize the test : yes\nCredentialed checks : no\nPatch management checks : None\nCGI scanning : disabled\nWeb application tests : disabled\nMax hosts : 30\nMax checks : 4\nRecv timeout : 5\nBackports : None\nAllow post-scan editing: Yes\nScan Start Date : 2018/4/12 16:30 -03\nScan duration : 605 sec',
             'vulnerability_publication_date': None,
-            'xref': None
+            'xref': []
         }
 
         self.assertEqual(expected_dict,

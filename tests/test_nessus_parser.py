@@ -19,3 +19,13 @@ class TestNessusXml(TestCase):
         nessus_xml = open('tests/files/empty_report.xml').read()
 
         self.assertIsInstance(parse_nessus_xml(nessus_xml), NessusClientData)
+
+    def test_xxe_report(self):
+        nessus_file = 'tests/files/xxe_report.xml'
+        nessus_xml = open(nessus_file).read()
+
+        nessus_report = parse_nessus_xml(nessus_xml)
+        assert 'xmlentityvalue' not in nessus_report['report']['hosts'][0]['report_items'][0]['description']
+
+        nessus_report = parse_nessus_file(nessus_file)
+        assert 'xmlentityvalue' not in nessus_report['report']['hosts'][0]['report_items'][0]['description']

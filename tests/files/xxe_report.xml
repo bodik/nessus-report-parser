@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<!DOCTYPE foo [
+  <!ENTITY xmlentity "xmlentityvalue">
+]>
+<NessusClientData_v2>
+  <Report name="name">
+    <ReportHost name="somehostname">
+      <ReportItem port="0" svc_name="general" protocol="tcp" severity="0" pluginID="19506" pluginName="Nessus Scan Information" pluginFamily="Settings">
+        <description>content &xmlentity;</description>
+      </ReportItem>
+    </ReportHost>
+  </Report>
+</NessusClientData_v2>

@@ -13,10 +13,10 @@ from .model.report_item import ReportItem
 
 
 def parse_nessus_file(xml_file):
-    return NessusClientData.from_etree(etree.XML(open(xml_file).read()))
+    return NessusClientData.from_etree(etree.XML(open(xml_file).read(), parser=etree.XMLParser(resolve_entities=False)))
 
 
 def parse_nessus_xml(xml):
     xml = trim_encoding_declaration(xml)
-    elem = etree.parse(StringIO(xml)).getroot()
+    elem = etree.parse(StringIO(xml), parser=etree.XMLParser(resolve_entities=False)).getroot()
     return NessusClientData.from_etree(elem)

@@ -2,6 +2,7 @@ from collections import UserDict
 
 from lxml import etree
 
+from .host_properties import HostProperties
 from .report_item import ReportItem
 
 
@@ -19,6 +20,8 @@ class ReportHost(UserDict):
         assert elem.tag == 'ReportHost'
 
         host_properties = {'name': elem.attrib.get('name')}
+        if elem.find('HostProperties') is not None:
+            host_properties['tags'] = HostProperties.from_etree(elem.find('HostProperties'))
         report_items = [ReportItem.from_etree(el) for el in elem.findall('ReportItem')]
 
         return ReportHost(report_items, host_properties)
